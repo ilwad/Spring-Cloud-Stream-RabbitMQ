@@ -11,6 +11,27 @@
 	<artifactId>usage-cost-processor-rabbit</artifactId>
 	<name>usage-cost-processor</name>
 	<description>Demo project for Spring Boot</description>
+
+    <distributionManagement>
+  	<repository>
+    <id>central</id>
+    <name>releases</name>
+    <url>http://awx-crowley-test.uksouth.cloudapp.azure.com:8081/artifactory/libs-release</url>
+ 	 </repository>
+  	<snapshotRepository>
+    <id>snapshot</id>
+    <name>snapshots</name>
+    <url>http://awx-crowley-test.uksouth.cloudapp.azure.com:8081/artifactory/libs-snapshot</url>
+  	</snapshotRepository>
+	</distributionManagement>
+
+	<scm>
+	<connection>scm:git:git@github.com:nandudemy/devops.git</connection>
+	<developerConnection>scm:git:git@github.com:ilwad/Spring-Cloud-Stream-RabbitMQ.git</developerConnection>
+	<url>git@github.com:ilwad/Spring-Cloud-Stream-RabbitMQ.git</url>
+	<tag>HEAD</tag>
+	</scm>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -44,4 +65,18 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+
+	<build>
+		<plugins>
+				<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.5.1</version>
+				<configuration>
+					<tagNameFormat>v@{project.version}</tagNameFormat>
+					<autoVersionSubmodules>true</autoVersionSubmodules>
+				</configuration>
+				</plugin>
+		</plugins>
+	</build>
 </project>
