@@ -77,6 +77,6 @@
 					<autoVersionSubmodules>true</autoVersionSubmodules>
 				</configuration>
 				</plugin>
-		</plugin>
+		</plugins>
 	</build>
 </project>
