@@ -15,13 +15,13 @@
     <distributionManagement>
   	<repository>
     <id>central</id>
-    <name>releases</name>
-    <url>http://awx-crowley-test.uksouth.cloudapp.azure.com:8081/artifactory/libs-release</url>
+    <name>Ansible-AWX-releases</name>
+    <url>http://awx-crowley-test.uksouth.cloudapp.azure.com:8081/artifactory/libs-release-local</url>
  	 </repository>
   	<snapshotRepository>
     <id>snapshot</id>
-    <name>snapshots</name>
-    <url>http://awx-crowley-test.uksouth.cloudapp.azure.com:8081/artifactory/libs-snapshot</url>
+    <name>Ansible-AWX-snapshots</name>
+    <url>http://awx-crowley-test.uksouth.cloudapp.azure.com:8081/artifactory/libs-snapshot-local</url>
   	</snapshotRepository>
 	</distributionManagement>
 
