@@ -1,0 +1,33 @@
+node {
+   def mvnHome
+   stage('Prepare') {
+      git url: 'git@github.com:ilwad/Spring-Cloud-Stream-RabbitMQ.git', branch: 'master'
+      mvnHome = tool 'maven'
+   }
+   stage('Build') {
+      if (isUnix()) {
+         sh "'${mvnHome}/bin/mvn ' -Dmaven.test.failure.ignore -f usage-cost-processor/pom.xml clean package"
+      } else {
+         bat(/"${mvnHome}\bin\mvn " -Dmaven.test.failure.ignore -f usage-cost-processor/pom.xml clean package/)
+      }
+   }
+   stage('Unit Test') {
+      junit '**/target/surefire-reports/TEST-*.xml'
+      archive 'target/*.jar'
+   }
+   stage('Integration Test') {
+     if (isUnix()) {
+        sh "'${mvnHome}/bin/mvn ' -Dmaven.test.failure.ignore -f usage-cost-processor/pom.xml clean verify"
+     } else {
+        bat(/"${mvnHome}\bin\mvn " -Dmaven.test.failure.ignore -f usage-cost-processor/pom.xml clean verify/)
+     }
+   }
+   stage('Sonar') {
+      if (isUnix()) {
+         sh "'${mvnHome}/bin/mvn  ' -f usage-cost-processor/pom.xml sonar:sonar"
+      } else {
+         bat(/"${mvnHome}\bin\mvn " -f usage-cost-processor/pom.xml sonar:sonar/)
+      }
+   }
+
+}
